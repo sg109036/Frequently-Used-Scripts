@@ -1,0 +1,1 @@
+cat /etc/oratab |grep -v "#"|grep  ":"| awk -F ":" '{print "export ORACLE_SID="$1"\nexport ORACLE_HOME="$2"\nexport PATH=$ORACLE_HOME/bin:$PATH""\nsqlplus / as sysdba << EOF\nshut immediate\nexit\nEOF\n"}'
